@@ -32,11 +32,11 @@ def welcome():
     """"List all available api routes."""
     return(
     f"Available Routes:<br/>"
-    f"/api/v1.0/precipitation:<br/>"
-    f"/api/v1.0/stations:<br/>"
-    f"/api/v1.0/tobs:<br/>"
-    f"/api/v1.0/<start>:<br/>"
-    f"/api/v1.0/<start>/<end>:<br/>"
+    f"/api/v1.0/precipitation<br/>"
+    f"/api/v1.0/stations<br/>"
+    f"/api/v1.0/tobs<br/>"
+    f"/api/v1.0/start_date<br/>"
+    f"/api/v1.0/start_date/end_date<br/>"
     )
 
 
@@ -46,24 +46,27 @@ def welcome():
 @app.route("/api/v1.0/precipitation")
 def precipitation():
 
-    print("Request received for Precipitation")
+    print("Request received for Precipitation Information")
     
     results = session.query(Measurement).filter(Measurement.date >= '2016-08-23').all()
+    session.close()
+
+    # Create a dictionary from the row data and append to a list of precipitation_info
     precipitation_info = []
     
     for data in results:
         precipitation_dict = {}
         precipitation_dict[data.date] = data.prcp
-        all_precipitation.append(precipitation_dict)
+        precipitation_info.append(precipitation_dict)
 
-    return jsonify(all_precipitation)
+    return jsonify(precipitation_info)
 
 
 ####### Return a list of stations from the dataset
 @app.route("/api/v1.0/stations")
-def station():
+def stations():
 
-    print("Request received for Stations")
+    print("Request received for Station Information")
     
     results = session.query(Station.station).all()
     session.close()
@@ -97,8 +100,8 @@ def startdate_tobs(start):
 
     print("Request received for Temperature Observations for all dates greater than and equal to your start date")
     
-    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).        filter(Measurement.date >= start).all()
-       
+    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).all()
+    session.close()  
     return jsonify(results)
 
 ####### Return a JSON list of the minimum temperature, the average temperature, 
@@ -106,16 +109,15 @@ def startdate_tobs(start):
 # When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` 
 # for dates between the start and end date inclusive.
 
-@app.route("/api/v1.0/<start><end>")
+@app.route("/api/v1.0/<start>/<end>")
 def start_end_tobs(start, end):
 
     print("Request received for Temperature Observations for the range within your start and end dates")
     
-    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).        filter(Measurement.date >= start).filter(Measurement.date <= end).all()
-       
+    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+    session.close()
+
     return jsonify(results)
-
-
 
 
 if __name__ == "__main__":
