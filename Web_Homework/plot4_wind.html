@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WeatherPy Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html" ><Strong>Latitude</Strong></a>
+        
+          <div class="navbar-nav navbar-right">
+            <ul  class="navbar-nav" ></ul>
+                
+              <li class="nav-item dropdown active" >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plots</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="plot1_temp.html">Temperature</a>
+                    <a class="dropdown-item" href="plot2_humidity.html">Humidity</a>
+                    <a class="dropdown-item" href="plot3_cloudiness.html">Cloudiness</a>
+                    <a class="dropdown-item" href="plot4_wind.html">Wind Speed</a>
+                  </div>
+              </li>
+                
+              <li class="nav-item active">
+                <a class="nav-link" href="comparisons.html">Comparison</a>
+              </li>
+                
+              <li class="nav-item active">
+                <a class="nav-link" href="data.html">Data</a>
+              </li>
+
+            </ul>
+          </div> 
+        </div> 
+      </nav>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-8 col-sm-12">
+
+    <h2>Windiness</h2>
+    <hr>
+    <img target="_blank" src="assets/images/Fig4.png" width = "521" height ="496" alt="Wind Speed Map"> 
+    <p>There is also no correlation between a city’s windiness as compared with its latitude. Furthermore, most cities sampled do not have wind speeds over 10 mph. </p>
+    </div> 
+
+  <div class="col-md-4 col-sm-12">
+
+  <h2>Visualizations</h2>
+  <hr>
+  <a href="plot1_temp.html">
+    <img target="_blank" src="assets/images/Fig1.png" width = "156" height ="146" alt="Tempurature Map">
+  <a href="plot2_humidity.html">
+    <img target="_blank" src="assets/images/Fig2.png" width = "156" height ="146" alt="Humidity Map"><br>
+  <a href="plot3_cloudiness.html">
+    <img target="_blank" src="assets/images/Fig3.png" width = "156" height ="146" alt="Cloudiness Map">
+  <a href="plot4_wind.html">
+    <img target="_blank" src="assets/images/Fig4.png" width = "156" height ="146" alt="Wind Speed Map">
+</div>
+</div>
+</div>
+
+<footer class = "footer">
+  <p>@ Copyright Coding Bootcamp 2017</p>      
+</footer>
+
+</body>
+
+</html>
+

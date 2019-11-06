@@ -1,0 +1,30 @@
+img {
+  float: left;
+}
+
+h2 {
+  color: #54A595;
+}
+
+p {
+  color: #363838;
+
+}
+
+body {
+  background-color: rgb(226, 225, 225);
+
+}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+.navbar-nav li {
+    display:inline-block;     
+}
+
+footer {
+    margin-top: 55px;	
+}
