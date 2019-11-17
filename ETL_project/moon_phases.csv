@@ -1,0 +1,124 @@
+id,date,moon_phase
+0,10/1/2017,Waxing gibbous
+1,10/2/2017,Waxing gibbous
+2,10/3/2017,Waxing gibbous
+3,10/4/2017,Full moon
+4,10/5/2017,Full moon
+5,10/6/2017,Full moon
+6,10/7/2017,Waning gibbous
+7,10/8/2017,Waning gibbous
+8,10/9/2017,Waning gibbous
+9,10/10/2017,Waning gibbous
+10,10/11/2017,Last quarter
+11,10/12/2017,Last quarter
+12,10/13/2017,Last quarter
+13,10/14/2017,Waning crescent
+14,10/15/2017,Waning crescent
+15,10/16/2017,Waning crescent
+16,10/17/2017,Waning crescent
+17,10/18/2017,New
+18,10/19/2017,New
+19,10/20/2017,New
+20,10/21/2017,Waxing crescent
+21,10/22/2017,Waxing crescent
+22,10/23/2017,Waxing crescent
+23,10/24/2017,Waxing crescent
+24,10/25/2017,Waxing crescent
+25,10/26/2017,First quarter
+26,10/27/2017,First quarter
+27,10/28/2017,First quarter
+28,10/29/2017,First quarter
+29,10/30/2017,Waxing gibbous
+30,10/31/2017,Waxing gibbous
+31,11/1/2017,Waxing gibbous
+32,11/2/2017,Waxing gibbous
+33,11/3/2017,Full moon
+34,11/4/2017,Full moon
+35,11/5/2017,Full moon
+36,11/6/2017,Waning gibbous
+37,11/7/2017,Waning gibbous
+38,11/8/2017,Waning gibbous
+39,11/9/2017,Last quarter
+40,11/10/2017,Last quarter
+41,11/11/2017,Last quarter
+42,11/12/2017,Waning crescent
+43,11/13/2017,Waning crescent
+44,11/14/2017,Waning crescent
+45,11/15/2017,Waning crescent
+46,11/16/2017,Waning crescent
+47,11/17/2017,New
+48,11/18/2017,New
+49,11/19/2017,New
+50,11/20/2017,Waxing crescent
+51,11/21/2017,Waxing crescent
+52,11/22/2017,Waxing crescent
+53,11/23/2017,Waxing crescent
+54,11/24/2017,Waxing crescent
+55,11/25/2017,First quarter
+56,11/26/2017,First quarter
+57,11/27/2017,First quarter
+58,11/28/2017,Waxing gibbous
+59,11/29/2017,Waxing gibbous
+60,11/30/2017,Waxing gibbous
+61,12/1/2017,Waxing gibbous
+62,12/2/2017,Full moon
+63,12/3/2017,Full moon
+64,12/4/2017,Full moon
+65,12/5/2017,Waning gibbous
+66,12/6/2017,Waning gibbous
+67,12/7/2017,Waning gibbous
+68,12/8/2017,Waning gibbous
+69,12/9/2017,Last quarter
+70,12/10/2017,Last quarter
+71,12/11/2017,Last quarter
+72,12/12/2017,Waning crescent
+73,12/13/2017,Waning crescent
+74,12/14/2017,Waning crescent
+75,12/15/2017,Waning crescent
+76,12/16/2017,Waning crescent
+77,12/17/2017,New
+78,12/18/2017,New
+79,12/19/2017,New
+80,12/20/2017,Waxing crescent
+81,12/21/2017,Waxing crescent
+82,12/22/2017,Waxing crescent
+83,12/23/2017,Waxing crescent
+84,12/24/2017,Waxing crescent
+85,12/25/2017,First quarter
+86,12/26/2017,First quarter
+87,12/27/2017,First quarter
+88,12/28/2017,Waxing gibbous
+89,12/29/2017,Waxing gibbous
+90,12/30/2017,Waxing gibbous
+91,12/31/2017,Waxing gibbous
+92,1/1/2018,Full moon
+93,1/2/2018,Full moon
+94,1/3/2018,Waning gibbous
+95,1/4/2018,Waning gibbous
+96,1/5/2018,Waning gibbous
+97,1/6/2018,Waning gibbous
+98,1/7/2018,Last quarter
+99,1/8/2018,Last quarter
+100,1/9/2018,Last quarter
+101,1/10/2018,Last quarter
+102,1/11/2018,Waning crescent
+103,1/12/2018,Waning crescent
+104,1/13/2018,Waning crescent
+105,1/14/2018,Waning crescent
+106,1/15/2018,New
+107,1/16/2018,New
+108,1/17/2018,New
+109,1/18/2018,New
+110,1/19/2018,Waxing crescent
+111,1/20/2018,Waxing crescent
+112,1/21/2018,Waxing crescent
+113,1/22/2018,Waxing crescent
+114,1/23/2018,First quarter
+115,1/24/2018,First quarter
+116,1/25/2018,First quarter
+117,1/26/2018,Waxing gibbous
+118,1/27/2018,Waxing gibbous
+119,1/28/2018,Waxing gibbous
+120,1/29/2018,Waxing gibbous
+121,1/30/2018,Full moon
+122,1/31/2018,Full moon
