@@ -37,8 +37,8 @@ def scrape():
     for image in featured_images:
         photo_references = image['data-fancybox-href']
         images.append(photo_references)
-        
-        mars_complete_data['featured_image_url'] ="ttps://www.jpl.nasa.gov" + photo_references
+        featured_image_url = "https://www.jpl.nasa.gov" + photo_references
+        mars_complete_data['featured_image_url'] = featured_image_url
     
     # Mars Weather
     weather_url = 'https://twitter.com/marswxreport?lang=en'
@@ -50,10 +50,6 @@ def scrape():
     weather = []
     for tweet in tweets:
         description = tweet.find('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text.replace('\n', ',', 2)
-       # unwanted = tweet.find('a')
-        #description = unwanted.extract()
-        #clean_description = description.replace('pic.twitter.com/EpR7UZmflJ','')
-        #do extract here       unwanted.extract();  unwanted = soup.find('a')
         weather.append(description)
         mars_complete_data['mars_weather'] = weather[0]
 

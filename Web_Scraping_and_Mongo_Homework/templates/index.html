@@ -10,60 +10,48 @@
 </head>
 
 <body>
-<center>
 
 <!-- Title and Scrape Button -->
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get New Mars Data!</a></p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Mars Data</a></p>
     </div>
 
 <!-- Mars News -->  
   <div class="row">
     <div class="col-md-12">
-      <div class="media">
-        <div class="media-body">
-          <h2><b>Mars News</b></h2>
-           <h4 class="media-heading"><b>{{  mars.title  }}</b></h4>
-           <h5></p>{{  mars.paragraph  }}</p></h5>
-          </div>
-        </div>
+      <h2><b>Mars News</b></h2>
+        <h3><b>{{  mars.title  }}</b></h3>
+         <h4></p>{{  mars.paragraph  }}</p></h4>
+         <br>
       </div>
     </div>
-
 
 <!-- Mars Featured Image -->  
   <div class="row">
-    <div class="col-md-12">
-      <div class="media">
-        <div class="media-body">
-          <h2><b>Featured Image of Mars</b></h2>
-           <img src= {{  mars.featured_image_url }} class="img-responsive">
-          </div>
-        </div>
-      </div>
+    <div class="col-md-8 big_box">
+      <h2><b>Featured Mars Image</b></h2>
+        <img src="{{mars.featured_image_url}}" alt="featured JPL image" />
     </div>
 
-<!-- Mars Weather -->  
-  <div class="row">
-    <div class="col-md-12">
-      <div class="media">
-        <div class="media-body">
-          <h2><b>Current Weather on Mars</b></h2>
-            <p>{{mars.mars_weather}}</p>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-4">  
+ <!-- Mars Weather -->   
+    <div class="card" style="width: 35rem;">
+      <div class="card-body">
+         <h2 class="card-title"><b> Current Weather On Mars </b></h2>
+         <h4><p class="card-text"> {{ mars.mars_weather}}  </p></h4>
+     </div>
     </div>
-
+        <br>
+        <br>
+            
 <!-- Mars facts HTML data -->
-  <div class="row">
-    <div class="col-md-12">
       <h2><b>Mars Facts</b></h2>
         {{mars.mars_facts | safe }}
-      </div>
+     </div>
     </div>
+
 
 <!-- Mars Hemispheres -->
   <div class="row" style="margin-top:60px;">
@@ -77,6 +65,7 @@
           <img src="{{hemisphere.img_url}}">
           <div class="caption">
             <h3><b>{{ hemisphere.title }}</b></h3>
+            <br>
           </div>
         </div>
       </div>
@@ -86,7 +75,6 @@
 
   </div>
   
-  </center>
-</body>
+ --></body>
 
 </html>
