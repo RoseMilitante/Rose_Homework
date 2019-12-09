@@ -1,92 +1,44 @@
-// from data.js
+// From data.js
 var tableData = data;
 
-// YOUR CODE HERE!
-
-// Get a reference to the table body
+// Select tbody, since table should be filled with the data
 var tbody = d3.select("tbody");
 
-// Console.log the data from data.js
-console.log(tableData);
+// appends all the data from data.js file into the html page
+data.forEach((ufoSighting) => {
+    //add a new row for each grouping of data
+    var row = tbody.append("tr");
+    Object.entries(ufoSighting).forEach(([key, value]) => {
+      var cell = tbody.append("td");
+      cell.text(value);
+    });
+});
 
-// // Create an array with the column names from the given data 
-// var columns = ["datetime","city","state","country","shape","durationMinutes","comments"]
+// Select the submit button when clicked
+var submit = d3.select("#filter-btn");
 
-// // Loop through the array of givendata and append each row to table on to the webpage 
-// function loadData(){
-//     tableData.forEach(aliens =>{
-//         var row = tbody.append("tr")
-//         columns.forEach(column => {
-//             if(column =="city" || column =="state" ||column == "country"){
-//                 row.append("td").text(aliens[column].toUpperCase())
-//               }
-//               else row.append("td").text(aliens[column])    
-//         })
-//     })
-// }
-// // call the function to load the data 
-// loadData()
+// take the input from the user and filter the data 
+submit.on("click", function() {
 
-// // Get a reference to the input element on the page with the id property 
-// var inputDate = d3.select("#datetime");
-// var inputCity = d3.select("#city");
-// var inputState = d3.select("#state");
-// var inputCountry = d3.select("#country");
-// var inputShape = d3.select("#shape");
+    // Select the input element 
+    var inputElement = d3.select("#datetime");
+  
+    // Get the value the input
+    var userInput = inputElement.property("value");
+ 
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
 
-
-// // Get a reference to the filter button on the page with the id property set to `filter-btn`
-// var filterButton = d3.select("#filter-btn");
-
-// // Get a reference to the filter button on the page with the id property set to `filter-btn`
-// var resetButton = d3.select("#reset-btn");
-
-// // create a function for filtering the data with the given input
-// function filterData(){
-
-//     // Prevent the webpage from refreshing
-//     d3.event.preventDefault();
-
-//     // Extract the given input for all the fields on the web page
-//     var Datevalue = inputDate.property("value")
-//     var Cityvalue = inputCity.property("value")
-//     var Statevalue = inputState.property("value")
-//     var Countryvalue = inputCountry.property("value")
-//     var Shapevalue = inputShape.property("value")
-
-//     // Apply the conditions for filtering the data and assign it to a variable
-//     var filteredData = tableData.filter(function(recorded){
-//        return ((recorded.datetime === Datevalue ||Datevalue == "" ) &&
-//                 (recorded.city === Cityvalue ||Cityvalue == "") &&
-//                 (recorded.state === Statevalue ||Statevalue == "")&&
-//                 (recorded.country === Countryvalue ||Countryvalue == "")&&
-//                 (recorded.shape === Shapevalue ||Shapevalue== "")
-//             )
-//     })
-
-//     // Print the filtered data to the console
-//     console.log(filteredData)
-//     // Empty the table to append with the filtered data 
-//     tbody.text("")
-//     // update the table with the filtered data     
-//     filteredData.forEach(aliens =>{
-//         var row = tbody.append("tr")
-//         columns.forEach(column => {
-//             if(column =="city" || column =="state" ||column == "country"){
-//                 row.append("td").text(aliens[column].toUpperCase())
-//               }
-//               else row.append("td").text(aliens[column])    
-//         })
-//     })
-// }
-// // Add event handler for the click button to filter the table with the given input
-// filterButton.on("click",filterData)
-
-// // create a function for resetting the table 
-// function resetData(){
-//     tbody.text("")
-//     loadData()
-//     }
+    // filter the table to match the input given
+    var filteredTable = tableData.filter(ufoSighting => ufoSighting.datetime === userInput);
+    tbody.html("");
     
-// // Add event handler for the reset button to reset the table to original data 
-// resetButton.on("click",resetData)
+    // displayed only the filtered data
+    filteredTable.forEach((ufoSighting) => {
+        var row = tbody.append("tr");
+        Object.entries(ufoSighting).forEach(([key, value]) => {
+          var cell = tbody.append("td");
+          cell.text(value);
+        });
+    });
+ });
