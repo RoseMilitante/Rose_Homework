@@ -4,33 +4,31 @@ function buildMetadata(sample) {
 
   // Use `d3.json` to fetch the metadata for a sample
   
-  var metaDataUrl = '/metadata/${sample}';
-  d3.json(metaDataUrl).then(function(sample){
+  var url = `/metadata/${sample}`;
+  d3.json(url).then(function(sample){
     console.log(sample);
 
     // Use d3 to select the panel with id of `#sample-metadata`
-      var sampleData = d3.select('#sample-metadata');
+      var selection = d3.select("#sample-metadata");
     
     // Use `.html("") to clear any existing metadata
-    sampleData.html("");
+    selection.html("");
 
     // Use `Object.entries` to add each key and value pair to the panel
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
-    Object.entries(sample).forEach(function([key,value]) {
-      var row = sampleData.append("p");
-      row.text('${key}:${value}')
-
+    Object.entries(sample).forEach(([key,value]) => {
+      selection.append("p").text(`${key}: ${value}`)
     });
+
   });
 }
 
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
-  var sampleDataUrl = '/samples/${sample}';
+  var sampleDataUrl = `/samples/${sample}`;
   d3.json(sampleDataUrl).then(function(data) {
-    console.log(sample);
 
     // @TODO: Build a Bubble Chart using the sample data
     var x_values = data.otu_ids;
@@ -43,7 +41,7 @@ function buildCharts(sample) {
       x: x_values,
       y: y_values,
       text: values,
-      mode: 'markers',
+      mode: "markers",
       marker: {
         color: colors,
         size: sizes} 
@@ -56,24 +54,35 @@ function buildCharts(sample) {
       title: "Belly Button Bacteria"
     };
 
-    Plotly.plot('bubble', data, layout);
-  });
+    Plotly.newPlot('bubble', data, layout);
+  // });
 
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
-  d3.json(sampleDataUrl).then(function(data) {  
+  // d3.json(sampleDataUrl).then(function(data) {  
     var pieValues = data.sample_values.slice(0,10);
     var pieLabels = data.otu_ids.slice(0,10);
     var pieHover = data.otu_labels.slice(0,10);
+    console.log(pieLabels)
 
     var pieData = {
         values: pieValues,
         labels: pieLabels,
         hovertext: pieHover,
-        type: 'pie'
-      };
-    Plotly.plot('pie', pieData);
+        type: 'pie',
+        hoverinfo: "text"
+        };
+
+    var data =[pieData];
+
+    var layout = {
+      showLegend: true
+    };
+
+    Plotly.newPlot('pie', data, layout)
+
+
 
   });
 }
