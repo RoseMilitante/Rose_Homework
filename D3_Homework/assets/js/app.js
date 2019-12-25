@@ -1,30 +1,28 @@
 // @TODO: YOUR CODE HERE!
 
-// Store width and height parameters to be used in later in the canvas
-var svgWidth = 950;
-var svgHeight = 600;
+// Store width and height parameters 
+var svgWidth = 960;
+var svgHeight = 500;
 
 // Set svg margins 
 var margin = {
-  top: 30,
-  right: 30,
+  top: 20,
+  right: 70,
   bottom: 80,
-  left: 90
+  left: 50
 };
 
 // Create the width and height based svg margins and parameters to fit chart group within the canvas
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
-// Create the canvas to append the SVG group that contains the given data
-// Give the canvas width and height calling the variables predifined.
+// Create the SVG wrapper, append an SVG group to hold 
+// the chart group and shift the chart over
 var svg = d3.select("#scatter")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
 
-// Create the chartGroup that will contain the data
-// Use transform attribute to fit it within the canvas
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
@@ -32,106 +30,101 @@ var chartGroup = svg.append("g")
 var file = "assets/data/data.csv"
 
 // Function is called and passes csv data
-d3.csv(file).then(successHandle, errorHandle);
+d3.csv(file).then(function(data) {
+  console.log(data);
 
-function errorHandle(error) {
-  throw err;
-}
-
-function successHandle(givenData) {
-
-  // Loop through the data and pass argument data
-    givenData.map(function(data) {
-      data.smokes = +data.smokes;
-      data.age = +data.age;
+    data.forEach(d => {
+      d.smokes = +d.smokes;
+      d.age = +d.age;
     });
 
   //  Create scale functions
   // Linear Scale takes the min to be displayed in axis, and the max of the data
   var xLinearScale = d3.scaleLinear()
-    .domain([8.1, d3.max(givenData, d => d.age)])
+    .domain([30, d3.max(data, d => d.age)])
     .range([0, width]);
 
   var yLinearScale = d3.scaleLinear()
-    .domain([20, d3.max(givenData, d => d.smokes)])
+    .domain([8, d3.max(data, d => d.smokes)])
     .range([height, 0]);
 
   // Create axis functions by calling the scale functions
-
   var bottomAxis = d3.axisBottom(xLinearScale);
   var leftAxis = d3.axisLeft(yLinearScale);
 
   // Append the axes to the chart group 
-  // Bottom axis moves using height 
   chartGroup.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(bottomAxis);
   
-  // Left axis is already at 0,0
   // Only append the left axis 
   chartGroup.append("g")
     .call(leftAxis);
 
+  // Styling
+  chartGroup.select('.domain').attr('stroke', 'blue')  // '.domain' is the main axis line <path> element
+  chartGroup.selectAll('.tick line')  // '.tick' is the <g> element of ticks, and <line> and <text> are in it
+    .attr('stroke', 'teal')
+  chartGroup.select('.tick:first-of-type text').remove() // 'first-of-type' and 'last-of-type'
+  chartGroup.selectAll('.tick text')
+    .attr('font-size', 12)
+    .attr('font-family', 'serif')
+    .attr('fill', 'blue')
 
   // Create Circles
   var circlesGroup = chartGroup.selectAll("circle")
-    .data(givenData)
+    .data(data)
     .enter()
-    .append("circle")
+
+  var circles = circlesGroup.append("circle")
     .attr("cx", d => xLinearScale(d.age))
-    .attr("cy", d => yLinearScale(d.smokes))
-    .attr("r", "15")
-    .attr("fill", "lightblue")
+    .attr("cy", d => yLinearScale(d.smokes) -4)
+    .attr("r", "12")
+    .attr("fill", "#45B6CE")
     .attr("opacity", ".65");
 
 
   // Append text to circles 
-
-  var circleLabel = chartGroup.selectAll()
-    .data(givenData)
-    .enter()
-    .append("text")
+  var circleLabel = circlesGroup.append("text")
     .attr("x", d => xLinearScale(d.age))
     .attr("y", d => yLinearScale(d.smokes))
-    .style("font-size", "15px")
+    .style("font-size", "12px")
     .style("text-anchor", "middle")
-    .style('fill', "white")
-    .text(d => (d.abbr));
+    .style("fill", "white")
+    .text(d => d.abbr);
 
-  // Step 6: Initialize tool tip
-  // ==============================
-  var toolTip = d3.tip()
-    .attr("class", "tooltip")
-    .offset([80, -60])
-    .html(function (d) {
-      return (`${d.state}<br>Age: ${d.age}%<br>Smokers: ${d.smokes}% `);
+  // Initialize tool tip
+    var toolTip = d3.tip()
+      .attr("class", "d3-tip")
+      .html(function(d) {
+        return (`State: ${d.abbr}<br>Smoker: ${d.smokes}%<br>Age (Med): ${d.age}`);
     });
 
-  // Step 7: Create tooltip in the chart
+  // Create tooltip in the chart
   // ==============================
   chartGroup.call(toolTip);
 
-  // Step 8: Create event listeners to display and hide the tooltip
+  // Create event listeners to display and hide the tooltip
   // ==============================
-  circlesGroup.on("click", function (data) {
+  circles.on("mouseover", function (data) {
     toolTip.show(data, this);
   })
     // onmouseout event
-    .on("mouseout", function (data, index) {
-      toolTip.hide(data);
+    .on("mouseout", function (data) {
+      toolTip.hide(data, this);
     });
 
   // Create axes labels
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left + 40)
+    .attr("y", 0 - margin.left + 5)
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .attr("class", "axisText")
-    .text("Smokes (%)");
+    .text("Smoker (%)");
 
   chartGroup.append("text")
-    .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+    .attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
     .attr("class", "axisText")
-    .text("Age (%)");
-}
+    .text("Age (Median)");
+});
