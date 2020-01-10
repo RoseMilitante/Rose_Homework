@@ -1,0 +1,25 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+li {
+  width: 30px;
+  list-style-type: none;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.legend {
+  background-color: white;
+  padding: 13px;
+  font: 13px Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #444;
+}
